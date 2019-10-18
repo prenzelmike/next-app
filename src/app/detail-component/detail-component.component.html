@@ -1,0 +1,11 @@
+<p>detail-component works!</p>
+<div *ngIf="sType">
+    <h2>{{sType.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{sType.id}}</div>
+    <div>
+      <label>name:
+        <input [(ngModel)]="sType.name" placeholder="name"/>
+      </label>
+    </div>
+    <button (click)="goBack()">go back</button>
+  </div>

@@ -1,0 +1,19 @@
+<div>
+    {{ variable2 }} {{childrentitle}}
+    </div>
+    <div>
+            {{ variable3 }}
+        </div>
+        <h3>List of simple types in sub component</h3>
+        <ul>
+          <li *ngFor="let simpleType of sTypes" >
+            <a routerLink="/detail/{{simpleType.id}}">
+              <span>{{simpleType.id}}</span> {{simpleType.name}}
+            </a>
+          </li>
+        </ul>
+        <!-- <div *ngIf="selectedItem"> -->
+            <span>From child component: {{ selectedItem.name }} </span>
+          <!-- <app-detail-component [sType] = "selectedItem">...</app-detail-component> -->
+        <!-- </div> -->
+       
