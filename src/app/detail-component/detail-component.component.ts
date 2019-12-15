@@ -14,6 +14,8 @@ export class DetailComponentComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private myService: MyserviceService,
     private location: Location) { }
+    // also see 
+    // https://stackoverflow.com/questions/50324891/use-same-component-for-different-routes-with-different-output
 
     ngOnInit(): void {
       this.getSimpleType();
@@ -27,6 +29,10 @@ export class DetailComponentComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+  save(): void {
+    this.myService.updateSimpleType(this.sType)
+      .subscribe(() => this.goBack());
   }
 
 }

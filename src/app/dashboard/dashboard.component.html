@@ -1,9 +1,10 @@
 <h3>Top Entries</h3>
 <div class="grid grid-pad">
     <a *ngFor="let sType of simpleTypes" class="col-1-4" routerLink="/detail/{{sType.id}}">
-        <!-- <div class="module hero"> -->
         <div class="card">
             <h4>{{sType.name}}</h4>
         </div>
     </a>
 </div>
+    
+<app-simpleType-search></app-simpleType-search>

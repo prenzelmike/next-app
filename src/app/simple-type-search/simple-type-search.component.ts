@@ -1,15 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Observable, Subject } from 'rxjs';
+
+import {
+   debounceTime, distinctUntilChanged, switchMap
+ } from 'rxjs/operators';
+
+import { SimpleType } from '../types/simpleType';
+import { MyserviceService } from '../myservice.service';
+
 @Component({
-  selector: 'app-simple-type-search',
+  selector: 'app-simpleType-search',
   templateUrl: './simple-type-search.component.html',
-  styleUrls: ['./simple-type-search.component.scss']
+  styleUrls: [ './simple-type-search.component.scss' ]
 })
 export class SimpleTypeSearchComponent implements OnInit {
+  simpleTypes$: Observable<SimpleType[]>;
+  private searchTerms = new Subject<string>();
 
-  constructor() { }
+  constructor(private simpleTypeService: MyserviceService) {}
 
-  ngOnInit() {
+  // Push a search term into the observable stream.
+  search(term: string): void {
+    this.searchTerms.next(term);
   }
 
+  ngOnInit(): void {
+    this.simpleTypes$ = this.searchTerms.pipe(
+      // wait 300ms after each keystroke before considering the term
+      debounceTime(300),
+
+      // ignore new term if same as previous term
+      distinctUntilChanged(),
+
+      // switch to new search observable each time the term changes
+      switchMap((term: string) => this.simpleTypeService.searchSimpleTypes(term)),
+    );
+  }
 }

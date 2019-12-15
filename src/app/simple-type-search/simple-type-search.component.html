@@ -1,1 +1,13 @@
-<p>simple-type-search works!</p>
+<div id="search-component">
+    <h4><label for="search-box">Simple Type Search</label></h4>
+  
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+  
+    <ul class="search-result">
+      <li *ngFor="let sType of simpleTypes$ | async" >
+        <a routerLink="/detail/{{sType.id}}">
+          {{sType.name}}
+        </a>
+      </li>
+    </ul>
+  </div>

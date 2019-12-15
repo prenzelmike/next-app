@@ -4,16 +4,28 @@
     <div>
             {{ variable3 }}
         </div>
+        <div>
+          <label>simple type:
+            <input #simpletypename />
+          </label>
+          <!-- (click) passes input value to add() and then clears the input -->
+          <button (click)="add(simpletypename.value); simpletypename.value=''">
+            add
+          </button>
+        </div>
         <h3>List of simple types in sub component</h3>
         <ul>
           <li *ngFor="let simpleType of sTypes" >
             <a routerLink="/detail/{{simpleType.id}}">
               <span>{{simpleType.id}}</span> {{simpleType.name}}
             </a>
+            <button class="delete" title="delete hero"
+             (click)="delete(simpleType)">x
+            </button>
           </li>
         </ul>
         <!-- <div *ngIf="selectedItem"> -->
-            <span>From child component: {{ selectedItem.name }} </span>
+            <!-- <span>From child component: {{ selectedItem.name }} </span> -->
           <!-- <app-detail-component [sType] = "selectedItem">...</app-detail-component> -->
         <!-- </div> -->
        

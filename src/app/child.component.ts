@@ -26,8 +26,24 @@ import { SimpleType} from './types/simpleType';
         .subscribe({next:(mytypes) => {this.sTypes= mytypes }, 
                     complete: () => {console.log("observable completed")},
                     error: (err)=>{console.log(err)}
-                    
                   });
+    }
+
+    add(newName: string): void {
+      newName = newName.trim();
+      if (!newName) { return; }
+      const newSimpleType:SimpleType = {id:-1, name: newName}
+      this.myservice.addSimpleType(newSimpleType)
+        .subscribe({
+          next: (stype) => {this.sTypes.push(stype);},
+          complete: () => {console.log("adding completed")},
+          error: () => {console.log("error when adding new simpleType")}
+        });
+    }
+
+    delete(sType: SimpleType): void {
+      this.sTypes = this.sTypes.filter(st=>st!=sType);
+      this.myservice.deleteSimpleType(sType).subscribe();
     }
 
     /*

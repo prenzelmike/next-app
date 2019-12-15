@@ -1,0 +1,18 @@
+<div>observable|async:
+    Time: {{ time$ | async }}
+</div>
+
+<div>Clock:
+    {{ clock$ | async }}
+</div>
+
+<div>Range:
+    {{ mySource | async }}
+</div>
+
+<button (click)="showOutput()">show observable output</button>
+<div>Range:
+    {{ myOutput }}
+</div>
+
+<button (click)="clearOutput()">clear observable output</button>
