@@ -12,7 +12,7 @@ import { SimpleType} from './types/simpleType';
     //selectedItem: SimpleType; obsolete since we use routing
     childrentitle: string = 'title taken from variable';
     variable2: string  = 'just another one';
-    variable3: string  = 'and a third one';
+    variable3: string  = 'and a third variable';
     sTypes: SimpleType[]; 
 
     constructor(private myservice: MyserviceService){}
